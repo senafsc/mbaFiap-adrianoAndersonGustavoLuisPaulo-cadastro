@@ -2,7 +2,7 @@ const cfg = () => {
     return {
         jwt_secret: "V$CoD#",
         jwt_expires: "id",
-        salt: 10000000000,
+        salt: 60 * 60 * 2,
         db: "mongodb+srv://UserMsApi:TrabalhoApi@cluster0.thtcwnc.mongodb.net/cadastro?retryWrites=true&w=majority"
     }
 }
