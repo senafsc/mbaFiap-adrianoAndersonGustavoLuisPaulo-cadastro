@@ -1,8 +1,9 @@
 # mbaFiap-adrianoAndersonGustavoLuisPaulo-cadastro
-Projeto de conclusão da disciplina de DESENVOLVIMENTO DE MICROSSERVIÇOS E APIS - MBA FIAP
+  - Projeto de conclusão da disciplina de DESENVOLVIMENTO DE MICROSSERVIÇOS E APIS - MBA FIAP
 
-<br><br>
-# Lista dos participantes da equipe
+<br>
+
+## Lista dos participantes da equipe
   -  Adriano Bastos e Silva (rm344764)
   - Anderson Andre dos Santos (rm344968)
   - Gustavo Souza Rodrigues (rm344770)
@@ -10,16 +11,21 @@ Projeto de conclusão da disciplina de DESENVOLVIMENTO DE MICROSSERVIÇOS E APIS
   - Paulo Roberto Petrillo (rm344779)
 
 <br>
+
+  ## Link gitHub:
+  - https://github.com/senafsc/mbaFiap-adrianoAndersonGustavoLuisPaulo-cadastro.git
+
 <br>
 
-## O Projeto foi realizado como treinamento da aula de desenvolvimento microserviços e apis
+## Descrição:
+  - O Projeto foi realizado como treinamento da aula de desenvolvimento microserviços e apis
 
 - Ele consiste numa aplicação para realizar as seguintes funções:
   - Cadastrar um usuário;
   - Criptografar a senha do usuário cadastrado;
   - Autenticar usuário;
   - Gerar token JWT;
-  - Alterar senha;
+  - Alterar dados do usuário, inclusive a senha;
 
 <br><br>
 
@@ -82,7 +88,7 @@ Projeto de conclusão da disciplina de DESENVOLVIMENTO DE MICROSSERVIÇOS E APIS
         }
         ~~~
   
-  <br><br><br>
+  <br>
   
   ## - LOGIN:
   - **POST:**
@@ -114,9 +120,9 @@ Projeto de conclusão da disciplina de DESENVOLVIMENTO DE MICROSSERVIÇOS E APIS
       }
       ~~~
 
-<br><br><br>
+<br>
 
- ## - ATUALIZAR:
+ ## - ATUALIZAR DADOS DO USUÁRIO:
   - **PUT:**
     - http://localhost:3000/api/usuarios/atualizar/6369772b95871b244b24cec9
     - body:
