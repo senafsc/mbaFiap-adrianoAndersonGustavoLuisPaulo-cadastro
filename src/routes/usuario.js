@@ -17,7 +17,6 @@ route.get("/", (req, res) => {
 });
 
 route.post("/cadastro", (req, res) => {
-  console.log('LOG => CADASTRAR: ', { senha: req.body.senha });
   bcrypt.hash(req.body.senha, 10, (erro, result) => {
     if (erro)
       return res
@@ -38,7 +37,6 @@ route.post("/cadastro", (req, res) => {
 });
 
 route.post("/login", (req, res) => {
-  console.log('LOG => LOGIN: ', { body: req.body });
   Usuario.findOne({ nomeusuario: req.body.nomeusuario }, (erro, result) => {
     if (erro)
       return res
@@ -63,22 +61,37 @@ route.post("/login", (req, res) => {
 });
 
 route.put("/atualizar/:id", verificar_token, (req, res) => {
-  Usuario.findByIdAndUpdate(
-    req.params.id,
-    req.body,
-    { new: true },
-    (erro, dados) => {
-      if (erro)
-        return res
-          .status(500)
-          .send({ output: `Erro ao processar a atualização-> ${erro}` });
-      if (!dados)
-        return res
-          .status(400)
-          .send({ output: `Não foi possível atualizar -> ${erro}` });
+  if (req.body.senha) {
+    bcrypt.hash(req.body.senha, 10, (erro, result) => {
+      if (erro) return res
+      .status(500)
+      .send({ output: `Erra ao tentar gerar a senha -> ${erro}` });
+      req.body.senha = result;
+
+      Usuario.findByIdAndUpdate(req.params.id, req.body, { new: true }, (erro, dados) => {
+        if (erro)
+          return res
+            .status(500)
+            .send({ output: `Erro ao processar a atualização-> ${erro}` });
+        if (!dados)
+          return res
+            .status(400)
+            .send({ output: `Não foi possível atualizar -> ${erro}` });
+        return res.status(202).send({ output: "Atualizado", payload: dados });
+      });
+    });
+  } else {
+    Usuario.findByIdAndUpdate(req.params.id, req.body, { new: true }, (erro, dados) => {
+      if (erro) return res
+      .status(500)
+      .send({ output: `Erro ao processar a atualização-> ${erro}` });
+      if (!dados) return res
+
+      .status(400)
+      .send({ output: `Não foi possível atualizar -> ${erro}` });
       return res.status(202).send({ output: "Atualizado", payload: dados });
-    }
-  );
+    });
+  }
 });
 
 module.exports = route;
